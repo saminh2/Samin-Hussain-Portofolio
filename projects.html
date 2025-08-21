@@ -80,88 +80,11 @@
         }, 500); // Reset after the transition
     };
 </script>
-<py-script>
-    from js import document
-    
-    # --- Game state ---
-    board = [" "] * 9          # 1D list for 3x3 board: indices 0..8
-    current_player = "X"
-    game_is_over = False
-    
-    # --- Helpers to talk to the page (DOM) ---
-    def set_status(text: str):
-        document.getElementById("ttt-status").innerText = text
-    
-    def cell_elem(i: int):
-        return document.getElementById(f"ttt-{i}")
-    
-    def reset_board_ui():
-        for i in range(9):
-            cell_elem(i).innerText = ""
-    
-    # --- Game logic (pure Python) ---
-    def check_winner():
-        wins = [
-            (0,1,2), (3,4,5), (6,7,8),  # rows
-            (0,3,6), (1,4,7), (2,5,8),  # cols
-            (0,4,8), (2,4,6)            # diagonals
-        ]
-        for a,b,c in wins:
-            if board[a] == board[b] == board[c] != " ":
-                return board[a]
-        return None
-    
-    def is_draw():
-        return " " not in board
-    
-    # --- Event handlers ---
-    def on_cell_click(evt):
-        global current_player, game_is_over
-    
-        if game_is_over:
-            return
-    
-        idx = int(evt.target.id.replace("ttt-", ""))
-    
-        # Ignore if already filled
-        if board[idx] != " ":
-            return
-    
-        # Place piece
-        board[idx] = current_player
-        evt.target.innerText = current_player
-    
-        # Check end states
-        winner = check_winner()
-        if winner:
-            set_status(f"{winner} wins! 🎉")
-            game_is_over = True
-            return
-        if is_draw():
-            set_status("It's a draw!")
-            game_is_over = True
-            return
-    
-        # Swap turns
-        current_player = "O" if current_player == "X" else "X"
-        set_status(f"Player {current_player}’s turn")
-    
-    def on_restart(_evt):
-        global board, current_player, game_is_over
-        board = [" "] * 9
-        current_player = "X"
-        game_is_over = False
-        reset_board_ui()
-        set_status("Player X’s turn")
-    
-    # --- Wire up events once DOM is present ---
-    for i in range(9):
-        cell_elem(i).addEventListener("click", on_cell_click)
-    document.getElementById("ttt-restart").addEventListener("click", on_restart)
-</py-script>
+
     
 </body>
 </html>
+
 
 
 
