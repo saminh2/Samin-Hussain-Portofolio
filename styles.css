@@ -98,3 +98,48 @@ nav a:hover {
 .hero-text h3{
     text-align:center;
 }
+/* --- Tic-Tac-Toe styles --- */
+#ttt-card {
+    background: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    max-width: 520px;
+}
+
+#ttt-status {
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #09191f;
+}
+
+#ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-auto-rows: 110px;
+    gap: 8px;
+    margin: 12px 0 16px;
+}
+
+.ttt-cell {
+    font-size: 2.2rem;
+    font-weight: 800;
+    border: 3px solid #3d606e;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.9);
+    cursor: pointer;
+    transition: transform 0.08s ease;
+}
+
+.ttt-cell:hover { transform: scale(1.02); }
+
+#ttt-restart {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    background: #81b29a;
+    color: white;
+    cursor: pointer;
+}
+#ttt-restart:hover { background: #6b9080; }
